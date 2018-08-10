@@ -1,18 +1,15 @@
 ﻿using Android.App;
-using Android.Widget;
 using Android.OS;
-using Android.Support.V7.App;
 using Android.Support.Design.Widget;
-using Android.Support.V4.Widget;
+using Android.Support.V7.App;
 
 namespace AndroidLayoutTests.Code
 {
-    [Activity(Label = "AndroidLayoutTests", MainLauncher = true, Icon = "@mipmap/icon")]
+    [Activity(Label = "AndroidLayoutTests", MainLauncher = false, Icon = "@mipmap/icon")]
     public class MainActivity : AppCompatActivity
     {
         // Private Members
         private BottomNavigationView _bottomNavigationView;
-        private Android.Support.V7.Widget.Toolbar _toolbar;
 
 
         // -----------------------------------------------------------------------------
@@ -27,9 +24,7 @@ namespace AndroidLayoutTests.Code
             Title = "Layout Test";
 
             // Toolbar
-            _toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
-
-            SetSupportActionBar(_toolbar);
+            SetSupportActionBar(FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar));
 
             // Controls
             _bottomNavigationView = FindViewById<BottomNavigationView>(Resource.Id.bottom_navigation);
@@ -37,8 +32,8 @@ namespace AndroidLayoutTests.Code
             _bottomNavigationView.NavigationItemSelected += BottomNavigation_NavigationItemSelected;
 
             // Coordinator Layout
-            //var coordinatorLayout = FindViewById<CoordinatorLayout>(Resource.Id.main_content);
-            //var colorBottomSheet = coordinatorLayout.FindViewById<NestedScrollView>(Resource.Id.color_effects_bottom_sheet);
+            //var coordinatorLayout = FindViewById<CoordinatorLayout>(Resource.Id.mainLayout);
+            //var colorBottomSheet = coordinatorLayout.FindViewById<NestedScrollView>(Resource.Id.bottomSheetScrollView);
             //var bottomSheetBehavior = BottomSheetBehavior.From(colorBottomSheet);
             //var effects = FindViewById<Button>(Resource.Id.effects);
             //effects.Click += (sender, e) => 
@@ -48,12 +43,6 @@ namespace AndroidLayoutTests.Code
 
             // Load the first fragment on creation
             LoadFragment(new HomeFragment());
-        }
-
-        protected override void OnResume()
-        {
-            base.OnResume();
-
         }
 
         protected override void OnDestroy()
@@ -66,7 +55,6 @@ namespace AndroidLayoutTests.Code
             }
 
             _bottomNavigationView = null;
-            _toolbar = null;
         }
 
 
