@@ -5,7 +5,7 @@ using Android.Support.V7.App;
 
 namespace AndroidLayoutTests.Code
 {
-    [Activity(Label = "AndroidLayoutTests", MainLauncher = true, Icon = "@mipmap/icon")]
+    [Activity(Label = "AndroidLayoutTests", MainLauncher = false, Icon = "@mipmap/icon")]
     public class DynamicToolbarActivity : AppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)

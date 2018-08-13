@@ -129,6 +129,11 @@
     <AndroidResource Include="Resources\layout\HomePageItemFragmentLayout.axml" />
     <AndroidResource Include="Resources\layout\DynamicToolbarActivityLayout.axml" />
     <AndroidResource Include="Resources\mipmap-hdpi\arne.png" />
+    <AndroidResource Include="Resources\mipmap-hdpi\outline_expand_less_black_36.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\outline_expand_less_black_36.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\outline_expand_less_black_36.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\outline_expand_less_black_36.png" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\outline_expand_less_black_36.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

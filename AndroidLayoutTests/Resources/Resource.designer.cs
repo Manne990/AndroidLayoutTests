@@ -3270,6 +3270,9 @@ namespace AndroidLayoutTests
 			// aapt resource value: 0x7f030003
 			public const int other_icon = 2130903043;
 			
+			// aapt resource value: 0x7f030004
+			public const int outline_expand_less_black_36 = 2130903044;
+			
 			static Mipmap()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
