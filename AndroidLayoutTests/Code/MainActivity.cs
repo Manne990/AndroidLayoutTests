@@ -1,4 +1,5 @@
-﻿using Android.App;
+﻿using System;
+using Android.App;
 using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Support.V4.Widget;
@@ -15,6 +16,7 @@ namespace AndroidLayoutTests.Code
         private BottomNavigationView _bottomNavigationView;
         private LinearLayout _bottomSheetHeaderLayout;
         private TextView _bottomSheetBodyTextView;
+        private NestedScrollView _bottomSheetScrollView;
 
 
         // -----------------------------------------------------------------------------
@@ -40,11 +42,11 @@ namespace AndroidLayoutTests.Code
             _bottomNavigationView.NavigationItemSelected += BottomNavigation_NavigationItemSelected;
 
             var coordinatorLayout = FindViewById<CoordinatorLayout>(Resource.Id.mainLayout);
-            var colorBottomSheet = coordinatorLayout.FindViewById<NestedScrollView>(Resource.Id.bottomSheetScrollView);
-            var bottomSheetBehavior = BottomSheetBehavior.From(colorBottomSheet);
+            _bottomSheetScrollView = coordinatorLayout.FindViewById<NestedScrollView>(Resource.Id.bottomSheetScrollView);
+            var bottomSheetBehavior = BottomSheetBehavior.From(_bottomSheetScrollView);
 
             //bottomSheetBehavior.PeekHeight = 0;
-            bottomSheetBehavior.SetBottomSheetCallback(new CustomBottomSheetCallback(_bottomSheetHeaderLayout, _bottomSheetBodyTextView));
+            bottomSheetBehavior.SetBottomSheetCallback(new CustomBottomSheetCallback(_bottomSheetHeaderLayout, _bottomSheetBodyTextView, _bottomSheetScrollView));
 
             // Coordinator Layout
             //var coordinatorLayout = FindViewById<CoordinatorLayout>(Resource.Id.mainLayout);
@@ -118,44 +120,39 @@ namespace AndroidLayoutTests.Code
         {
             private readonly View _headerView;
             private readonly View _bodyView;
+            private readonly View _container;
 
-            public CustomBottomSheetCallback(View headerView, View bodyView)
+            public CustomBottomSheetCallback(View headerView, View bodyView, View container)
             {
                 _headerView = headerView;
                 _bodyView = bodyView;
+                _container = container;
             }
 
             public override void OnStateChanged(View bottomSheet, int newState)
             {
                 if (newState == BottomSheetBehavior.StateHidden)
                 {
-                    System.Diagnostics.Debug.WriteLine("StateHidden");
                     return;
                 }
 
                 if (newState == BottomSheetBehavior.StateDragging)
                 {
-                    System.Diagnostics.Debug.WriteLine("StateDragging");
-                    //_view.Visibility = ViewStates.Visible;
                     return;
                 }
 
                 if (newState == BottomSheetBehavior.StateExpanded)
                 {
-                    System.Diagnostics.Debug.WriteLine("StateExpanded");
-                    //_view.Visibility = ViewStates.Gone;
                     return;
                 }
 
                 if (newState == BottomSheetBehavior.StateSettling)
                 {
-                    System.Diagnostics.Debug.WriteLine("StateSettling");
                     return;
                 }
 
                 if (newState == BottomSheetBehavior.StateCollapsed)
                 {
-                    System.Diagnostics.Debug.WriteLine("StateCollapsed");
                     return;
                 }
             }
@@ -170,6 +167,7 @@ namespace AndroidLayoutTests.Code
 
                 _headerView.Animate().Alpha(alpha).SetDuration(0).Start();
                 _bodyView.Animate().Alpha(slideOffset).SetDuration(0).Start();
+                _container.SetBackgroundColor(new Android.Graphics.Color(68, 68, 68, (int)Math.Round(255 * slideOffset)));
             }
         }
     }
