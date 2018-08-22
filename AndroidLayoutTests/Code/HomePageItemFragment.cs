@@ -24,7 +24,9 @@ namespace AndroidLayoutTests.Code
             base.OnViewCreated(view, savedInstanceState);
 
             var titleTextView = view.FindViewById<TextView>(Resource.Id.titleTextView);
+
             titleTextView.Text = _item.Content;
+            titleTextView.SetBackgroundColor(_item.BackgroundColor);
         }
     }
 }

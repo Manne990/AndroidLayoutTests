@@ -40,9 +40,9 @@ namespace AndroidLayoutTests.Code
 
             _adapter.Update(new List<HomePageItem>
             {
-                new HomePageItem { Content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
-                new HomePageItem { Content = "Vestibulum id ligula porta felis euismod semper." },
-                new HomePageItem { Content = "Donec id elit non mi porta gravida at eget metus." }
+                new HomePageItem { Content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", BackgroundColor = Android.Graphics.Color.Aqua },
+                new HomePageItem { Content = "Vestibulum id ligula porta felis euismod semper.", BackgroundColor = Android.Graphics.Color.Yellow },
+                new HomePageItem { Content = "Donec id elit non mi porta gravida at eget metus.", BackgroundColor = Android.Graphics.Color.LightBlue }
             });
         }
     }
